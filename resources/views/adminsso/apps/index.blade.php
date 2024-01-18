@@ -24,59 +24,61 @@
                     </div>
                 </div>
                 <div class="card-body">
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td>Nama</td>
-                                <td>Redirect URL</td>
-                                <td>Icon</td>
-                                <td>Aksi</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($apps as $app)
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td>{{ $app->name }}</td>
-                                    <td>{{ $app->url }}</td>
-                                    <td>
-                                        @if ($app->type_icon === 'svg')
-                                            {!! $app->icon !!}
-                                        @endif
-                                        @if ($app->type_icon === 'url_img')
-                                            <img src="{{ $app->icon }}" alt="{{ $app->name }}" class="img img-fluid">
-                                        @endif
-                                        @if ($app->type_icon === 'upload_img')
-                                            <img src="/storage/{{ $app->icon }}" alt="{{ $app->name }}"
-                                                class="img img-fluid">
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <form action="/apps/{{ $app->id }}"
-                                            onsubmit="return confirm('Apakah anda yakin ?')" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm btn-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-trash" width="24" height="24"
-                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M4 7l16 0" />
-                                                    <path d="M10 11l0 6" />
-                                                    <path d="M14 11l0 6" />
-                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                </svg>
-                                            </button>
-                                        </form>
-
-
-                                    </td>
+                                    <td>Nama</td>
+                                    <td>Redirect URL</td>
+                                    <td>Icon</td>
+                                    <td>Aksi</td>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($apps as $app)
+                                    <tr>
+                                        <td>{{ $app->name }}</td>
+                                        <td>{{ $app->url }}</td>
+                                        <td>
+                                            @if ($app->type_icon === 'svg')
+                                                {!! $app->icon !!}
+                                            @endif
+                                            @if ($app->type_icon === 'url_img')
+                                                <img src="{{ $app->icon }}" alt="{{ $app->name }}"
+                                                    class="img img-fluid">
+                                            @endif
+                                            @if ($app->type_icon === 'upload_img')
+                                                <img src="/storage/{{ $app->icon }}" alt="{{ $app->name }}"
+                                                    class="img img-fluid">
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form action="/apps/{{ $app->id }}"
+                                                onsubmit="return confirm('Apakah anda yakin ?')" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm btn-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="icon icon-tabler icon-tabler-trash" width="24"
+                                                        height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M4 7l16 0" />
+                                                        <path d="M10 11l0 6" />
+                                                        <path d="M14 11l0 6" />
+                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>

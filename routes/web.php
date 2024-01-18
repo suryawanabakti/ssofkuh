@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/users', [UsersController::class, 'index']);
         Route::get('/users/create', [UsersController::class, 'create']);
         Route::post('/users', [UsersController::class, 'store']);
+        Route::get('/users/{user}/edit', [UsersController::class, 'edit']);
+        Route::patch('/users/{user}', [UsersController::class, 'update']);
         Route::delete('/users/{user}', [UsersController::class, 'destroy']);
         Route::post('/users/import', [UsersController::class, 'import']);
     });

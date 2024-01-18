@@ -7,34 +7,36 @@
                     <h4 class="card-title">Add User</h4>
                 </div>
                 <div class="card-body">
-                    <form action="/users" method="POST">
+                    <form action="/users/{{ $user->id }}" method="POST">
+                        @method('PATCH')
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama <span class="text-danger">*</span> </label>
-                            <input type="text" placeholder="...." class="form-control" required name="name">
+                            <input type="text" placeholder="...." class="form-control" required name="name"
+                                value="{{ $user->name }}">
                             @error('name')
                                 <small class="text-danger"> {{ $message }}</small>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username <span class="text-danger">*</span> </label>
-                            <input type="text" placeholder="...." class="form-control" required name="username">
+                            <label for="name" class="form-label">Username <span class="text-danger">*</span> </label>
+                            <input type="text" placeholder="...." class="form-control" required name="username"
+                                value="{{ $user->username }}">
                             @error('username')
                                 <small class="text-danger"> {{ $message }}</small>
                             @enderror
                         </div>
+
                         <div class="mb-3">
-                            <label for="name" class="form-label">Password <span class="text-danger">*</span> </label>
-                            <input type="password" placeholder="...." class="form-control" required name="password">
+                            <label for="name" class="form-label">Password </label>
+                            <input type="password" placeholder="...." class="form-control" name="password">
                             @error('password')
                                 <small class="text-danger"> {{ $message }}</small>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Password Confirmation <span
-                                    class="text-danger">*</span> </label>
-                            <input type="password" placeholder="...." class="form-control" required
-                                name="password_confirmation">
+                            <label for="name" class="form-label">Password Confirmation </label>
+                            <input type="password" placeholder="...." class="form-control" name="password_confirmation">
                         </div>
 
                         <button class="btn btn-primary" type="submit">Submit</button>

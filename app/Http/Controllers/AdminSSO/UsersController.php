@@ -35,6 +35,30 @@ class UsersController extends Controller
         return redirect('/users')->with('success', 'Berhasil tambah user');
     }
 
+    public function edit(User $user)
+    {
+        return view('adminsso.users.edit', compact('user'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $validatedData = $request->validate([
+            'name' => "required|max:255",
+            'username' => "required|regex:/^\S*$/u|unique:users,username," . $user->id,
+        ]);
+
+        if ($request->password) {
+            $request->validate([
+                'password' => 'confirmed|min:5',
+            ]);
+            $validatedData['password'] = bcrypt($request->password);
+        }
+
+        $user->update($validatedData);
+
+        return redirect('/users')->with('success', 'Berhasil update user');
+    }
+
     public function destroy(User $user)
     {
         $user->delete();
