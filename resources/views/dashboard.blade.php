@@ -50,9 +50,5 @@
 @endsection
 
 @push('js')
-    <script>
-        setTimeout(() => {
-            location.reload()
-        }, 15000);
-    </script>
+    <script></script>
 @endpush
