@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/apps',  [AppsController::class, 'index']);
         Route::get('/apps/create',  [AppsController::class, 'create']);
         Route::post('/apps',  [AppsController::class, 'store']);
+        Route::get('/apps/{app}/edit',  [AppsController::class, 'edit']);
+        Route::put('/apps/{app}',  [AppsController::class, 'update']);
         Route::delete('/apps/{app}',  [AppsController::class, 'destroy']);
 
         Route::get('/users', [UsersController::class, 'index']);
