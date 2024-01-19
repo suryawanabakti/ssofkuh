@@ -33,7 +33,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="font-weight-medium">
-                                                        Sertifikat Dokter PPPDS
+                                                        {{ $app->name }}
                                                     </div>
                                                 </div>
                                             </div>
