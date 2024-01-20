@@ -4,7 +4,7 @@
         <div class="container-xl">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4 class="card-title">Add User</h4>
+                    <h4 class="card-title">Edit User</h4>
                 </div>
                 <div class="card-body">
                     <form action="/users/{{ $user->id }}" method="POST">

@@ -10,9 +10,14 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::role(['user'])->get();
+        $users = User::role(['user']);
+        if ($request->search) {
+            $users->where('name', 'LIKE', "%{$request->search}%")
+                ->orWhere('username', 'LIKE', "%{$request->search}%");
+        }
+        $users = $users->paginate(10);
         return view('adminsso.users.index', compact('users'));
     }
 
