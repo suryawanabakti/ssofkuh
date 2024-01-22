@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\App;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AppsController extends Controller
@@ -15,13 +16,15 @@ class AppsController extends Controller
 
     public function create()
     {
-        return view('adminsso.apps.create');
+        $categories = Category::orderBy('created_at', 'desc')->get();
+        return view('adminsso.apps.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
 
         $validatedData = $request->validate([
+            'category_id' => 'required',
             'name' => 'required|max:255',
             'url' => 'required|url',
             'type_icon' => '',
@@ -43,12 +46,14 @@ class AppsController extends Controller
 
     public function edit(App $app)
     {
-        return view('adminsso.apps.edit', compact('app'));
+        $categories = Category::orderBy('created_at', 'desc')->get();
+        return view('adminsso.apps.edit', compact('app', 'categories'));
     }
 
     public function update(Request $request, App $app)
     {
         $validatedData = $request->validate([
+            'category_id' => 'required',
             'name' => 'required|max:255',
             'url' => 'required|url',
             'type_icon' => '',

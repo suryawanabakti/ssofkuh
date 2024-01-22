@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('apps', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id')->unique();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name');
             $table->text('url');
             $table->enum('type_icon', ['svg', 'url_img', 'upload_img'])->nullable();

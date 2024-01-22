@@ -13,7 +13,7 @@
                     <div class="card-header d-flex justify-content-between">
                         <h3 class="card-title">Users Data</h3>
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            <button class="btn btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Actions
                             </button>

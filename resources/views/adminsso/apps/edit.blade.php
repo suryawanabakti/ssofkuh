@@ -11,6 +11,19 @@
                         @method('PUT')
                         @csrf
                         <div class="mb-3">
+                            <label for="" class="form-label">Kategori</label>
+                            <select name="category_id" id="category_id" class="form-select" required>
+                                <option value="">Pilih </option>
+                                @foreach ($categories as $category)
+                                    <option @selected($category->id === $app->category_id) value="{{ $category->id }}">{{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <small class="text-danger"> {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="" class="form-label">Nama <span class="text-danger">*</span></label>
                             <input type="text" placeholder="...." class="form-control" name="name" required
                                 value="{{ $app->name }}">
@@ -30,7 +43,7 @@
                             <label for="" class="form-label">Type Icon</label>
                             <select name="type_icon" id="type_icon" class="form-select">
                                 <option value="">Pilih</option>
-                                <option value="svg">SVG</option>
+                                <option value="svg">SVG / Text</option>
                                 <option value="url_img">URL Image</option>
                                 <option value="upload_img">Upload Image</option>
                             </select>
@@ -65,7 +78,7 @@
             }
             var iconValue = "{{ $app->icon }}"
             if (val === 'svg') {
-                $('#icon').html(` <label for="" class="form-label">Icon SVG </label>
+                $('#icon').html(` <label for="" class="form-label">Icon SVG / Text </label>
                             <textarea name="icon" id="icon" rows="10" class="form-control h-100">${iconValue}</textarea>
                             `)
             }
@@ -74,7 +87,7 @@
                 $('#icon').html(
                     `   <label for="" class="form-label">URL Image</label>
                             <input type="text" value="${iconValue}" class="form-control" name="icon" placeholder="https://....">`
-                    )
+                )
             }
 
             if (val === 'upload_img') {
