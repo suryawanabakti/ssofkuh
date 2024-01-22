@@ -156,6 +156,16 @@
                     @endrole
 
                 </ul>
+                @if (request()->is('users/*'))
+                    <a class="btn btn-icon" href="/users"><x-back-logo></x-back-logo></a>
+                @endif
+                @if (request()->is('apps/*'))
+                    <a class="btn btn-icon" href="/apps">
+                        <x-back-logo></x-back-logo>
+                    </a>
+                @endif
+
+
             </div>
         </div>
     </div>
