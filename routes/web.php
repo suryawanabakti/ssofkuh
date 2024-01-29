@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminSSO\UsersController;
 use App\Http\Controllers\AppsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
-use App\Models\App;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
