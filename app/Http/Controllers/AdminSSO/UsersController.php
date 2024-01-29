@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\AdminSSO;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Imports\UsersImport;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,15 +28,10 @@ class UsersController extends Controller
         return view('adminsso.users.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $valData = $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:users,username',
-            'password' => 'required|confirmed|min:5'
-        ]);
-
         $valData['password'] = bcrypt($request->password);
+
         $user = User::create($valData);
         $user->assignRole("user");
         return redirect('/users')->with('success', 'Berhasil tambah user');
@@ -76,6 +73,11 @@ class UsersController extends Controller
             'file' => ['file', 'mimes:xlsx', 'required'],
         ]);
         Excel::import(new UsersImport, $request->file('file'));
-        return redirect('/dashboard')->with('success', 'All good!');
+        return back()->with('success', 'All good!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

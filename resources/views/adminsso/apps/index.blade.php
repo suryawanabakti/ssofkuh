@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-bordered table-hover" id="myTable">
                             <thead>
                                 <tr>
                                     <td>Nama</td>
@@ -37,8 +37,8 @@
                             <tbody>
                                 @foreach ($apps as $app)
                                     <tr>
-                                        <td>{{ $app->name }}</td>
-                                        <td>{{ $app->category?->name }}</td>
+                                        <td class="text-nowrap">{{ $app->name }}</td>
+                                        <td class="text-nowrap">{{ $app->category?->name }}</td>
                                         <td>{{ $app->url }}</td>
                                         <td>
                                             @if ($app->type_icon === 'svg')
@@ -84,3 +84,7 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script></script>
+@endpush

@@ -21,7 +21,7 @@
                                 <li><a class="dropdown-item" href="/users/create">Tambah</a></li>
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">Import</a></li>
-                                <li><a class="dropdown-item" href="#">Export</a></li>
+                                <li><a class="dropdown-item" href="/users/export">Export</a></li>
                             </ul>
                         </div>
                     </div>
@@ -50,6 +50,7 @@
                                 <tr>
                                     <th>Nama</th>
                                     <th>Username</th>
+                                    <th>Password Sementara / Pertama</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -59,6 +60,7 @@
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->username }}</td>
+                                        <td>{{ $user->temporary_password }}</td>
                                         <td class="text-end">
                                             <div class="dropdown">
                                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"

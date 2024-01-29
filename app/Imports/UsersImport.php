@@ -15,11 +15,18 @@ class UsersImport implements ToModel
      */
     public function model(array $row)
     {
-        return new User([
+        $password = (string) str()->uuid();
+
+        $user =  new User([
             'name' => $row[1],
             'username' => $row[2],
-            'password' => Hash::make($row[2]),
+            'password' => bcrypt($password),
+            'temporary_password' => $password,
             'token' => str()->uuid()
         ]);
+
+        $user->assignRole('user');
+
+        return $user;
     }
 }

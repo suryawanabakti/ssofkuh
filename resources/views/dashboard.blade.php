@@ -3,6 +3,17 @@
     <div class="page-body">
 
         <div class="container-xl">
+            @if (auth()->user()->temporary_password)
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">Perhatian !</h4>
+                    <p>
+                        Harap segera mengganti password sementara anda <a href="/profile" class="fw-bold">Klik Disini</a>
+                    </p>
+                    <hr>
+                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                </div>
+            @endif
+
             @foreach ($categories as $category)
                 @if ($category->apps->count() > 0)
                     <div class="card">
@@ -59,7 +70,7 @@
         $('.card-app').hover(function() {
             $(this).css("border-color", "red");
         }, function() {
-            $(this).css("border-color", "white");
+            $(this).css("border-color", "#E5E8EB");
         })
     </script>
 @endpush

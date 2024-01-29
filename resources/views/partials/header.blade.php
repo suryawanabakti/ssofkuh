@@ -42,7 +42,6 @@
                     @endguest
                 </div>
             </div>
-
             @auth
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
@@ -64,11 +63,10 @@
                     </div>
                 </div>
             @endauth
-
-
         </div>
     </div>
 </header>
+
 <header class="navbar-expand-md">
     <div class="collapse navbar-collapse" id="navbar-menu">
         <div class="navbar">
@@ -164,8 +162,6 @@
                         <x-back-logo></x-back-logo>
                     </a>
                 @endif
-
-
             </div>
         </div>
     </div>

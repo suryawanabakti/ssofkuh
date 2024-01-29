@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/users/{user}', [UsersController::class, 'update']);
         Route::delete('/users/{user}', [UsersController::class, 'destroy']);
         Route::post('/users/import', [UsersController::class, 'import']);
+        Route::get('/users/export', [UsersController::class, 'export']);
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
