@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/user-sso/{username}', [SSOController::class, 'getSSOByUsername'])->middleware('ssoauth');
-Route::post('/user-sso', [SSOController::class, 'store']);
+Route::post('/user-sso', [SSOController::class, 'store'])->middleware('ssoauth');
 
 Route::middleware('auth:sanctum')->group(function () {
 });

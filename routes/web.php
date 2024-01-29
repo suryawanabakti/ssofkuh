@@ -21,8 +21,6 @@ Route::get('/dashboard', function () {
     return view('dashboard', compact('token', 'categories'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
 Route::get('/login-sso', function () {
     $user =  User::where('token', request('token') ?? null)->first();
 
