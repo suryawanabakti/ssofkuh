@@ -15,7 +15,7 @@ class SSOMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->header('username') === env('USERNAME_SSO ') && $request->header('password') === env("SECRET_KEY_SSO ")) {
+        if ($request->header('username') === 'adminsso' && $request->header('password') === 'qwerty123') {
             return $next($request);
         } else {
             return response()->json([
