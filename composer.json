@@ -14,5 +14,6 @@
             "email": "suryawanabakti18@gmail.com"
         }
     ],
+    "minimum-stability": "stable",
     "require": {}
 }
