@@ -1,4 +1,5 @@
-
+## Install Package
+composer require suryawanabakti/sso
 
 ## Buat ENV
 ```env
