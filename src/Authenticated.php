@@ -36,7 +36,7 @@ class Authenticated extends ServiceProvider
 
         $user = User::where('username', $response['username'])->first();
 
-        if (!empty($login)) {
+        if (!empty($user)) {
             if (auth()->user()) {
                 Auth::guard('web')->logout();
                 request()->session()->invalidate();
