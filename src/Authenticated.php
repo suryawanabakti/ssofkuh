@@ -43,7 +43,7 @@ class Authenticated extends ServiceProvider
                 request()->session()->regenerateToken();
             }
             Auth::login($login);
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended(env('SSO_REDIRECT'));
         } else {
             return abort(404);
         }
