@@ -8,6 +8,13 @@
             "Surya\\Sso\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Surya\\Sso\\Authenticated"
+            ],
+        }
+    },
     "authors": [
         {
             "name": "surya",
