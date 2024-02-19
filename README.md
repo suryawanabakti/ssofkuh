@@ -7,7 +7,7 @@ SSO_SECRET_KEY=
 SSO_URL=
 ```
 
-## Konfigurasi manual providers app.php
+## Konfigurasi manual providers app.php (Optional)
 Surya\Sso\Authenticated::class
 
 ## Buat Script di web.php
