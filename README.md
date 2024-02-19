@@ -12,6 +12,7 @@ Surya\Sso\Authenticated::class
 ## Buat Script di web.php
 use Surya\Sso\Authenticated;
 
+```php
 Route::get('/login-sso', function () {
     $token = request('token') ?? null;
     $user =  Authenticated::authenticate($token);
