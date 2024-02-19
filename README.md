@@ -1,10 +1,12 @@
 
 
 ## Buat ENV
- SSO_USERNAME=
- SSO_SECRET_KEY=
- SSO_URL=
- SSO_REDIRECT = '/dashboard'
+```env
+SSO_USERNAME=
+SSO_SECRET_KEY=
+SSO_URL=
+SSO_REDIRECT = '/dashboard'
+```
 
 ## Konfigurasi manual providers app.php
 Surya\Sso\Authenticated::class
@@ -20,3 +22,5 @@ Route::get('/login-sso', function () {
     // Kondisi Jika Ada cth:  if role === admin redirect :
     return redirect('/dashboard');
 });
+```
+
