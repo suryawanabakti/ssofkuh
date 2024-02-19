@@ -34,7 +34,7 @@ class Authenticated extends ServiceProvider
                 "token" => $token
             ]);
 
-        $login = User::where('username', $response['username'])->first();
+        $user = User::where('username', $response['username'])->first();
 
         if (!empty($login)) {
             if (auth()->user()) {
@@ -42,8 +42,7 @@ class Authenticated extends ServiceProvider
                 request()->session()->invalidate();
                 request()->session()->regenerateToken();
             }
-            Auth::login($login);
-            return redirect()->intended(env('SSO_REDIRECT'));
+            return $user;
         } else {
             return abort(404);
         }
