@@ -1,0 +1,51 @@
+<?php
+
+namespace Surya\Sso;
+
+use Illuminate\Support\ServiceProvider;
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+
+class Authenticated extends ServiceProvider
+{
+    private $url;
+    private $http;
+    public $response;
+
+    public function __construct()
+    {
+        $this->url = env("SSO_URL");
+
+        $this->http = Http::withHeaders(
+            [
+                'username' => env('SSO_USERNAME'),
+                'password' => env('SSO_SECRET_KEY')
+            ]
+        );
+    }
+
+    public static function authenticate($token)
+    {
+        $self = new static;
+        $response = $self->http
+            ->get("{$self->url}/login-sso", [
+                "token" => $token
+            ]);
+
+        $login = User::where('username', $response['username'])->first();
+
+        if (!empty($login)) {
+            if (auth()->user()) {
+                Auth::guard('web')->logout();
+                request()->session()->invalidate();
+                request()->session()->regenerateToken();
+            }
+            Auth::login($login);
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } else {
+            return abort(404);
+        }
+    }
+}

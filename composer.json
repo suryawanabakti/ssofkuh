@@ -1,0 +1,19 @@
+{
+    "name": "surya/sso",
+    "description": "dev",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Surya\\Sso\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "surya",
+            "email": "suryawanabakti18@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
