@@ -44,7 +44,7 @@ class Authenticated extends ServiceProvider
             }
             return $user;
         } else {
-            return abort(404);
+            return abort(405);
         }
     }
 }
