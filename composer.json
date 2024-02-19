@@ -8,6 +8,11 @@
             "Surya\\Sso\\": "src/"
         }
     },
+     "autoload-dev": {
+        "psr-4": {
+            "Surya\\Sso\\": "src/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
