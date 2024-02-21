@@ -1,5 +1,5 @@
 <?php
 
-Route::get("/test", function () {
-    echo "test";
+Route::get("/active-user", function () {
+    return auth()->user();
 });
