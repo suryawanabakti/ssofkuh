@@ -45,8 +45,11 @@ class Authenticated extends ServiceProvider
                 request()->session()->regenerateToken();
             }
             return $user;
-        } else {
-            throw_if($response->failed(), SSOFkUhExcetion::withResponse($response));
         }
+        throw_if($response->failed(), SSOFkUhExcetion::withResponse($response));
+
+        $self->response = $response;
+
+        return $self;
     }
 }
