@@ -28,13 +28,16 @@ class Authenticated extends ServiceProvider
         );
     }
 
-    public static function authenticate($token)
+    public static function authenticate($token, $sso_token, $appname)
     {
         $self = new static;
         $response = $self->http
             ->get("{$self->url}/login-sso", [
-                "token" => $token
+                "token" => $token,
+                "sso_token" => $sso_token,
             ]);
+
+        throw_if($response->failed(), SSOFkUhExcetion::withResponse($response));
 
         $user = User::where('sso_token', $response['sso_token'])->first();
 
@@ -46,9 +49,12 @@ class Authenticated extends ServiceProvider
             }
             return $user;
         }
-        throw_if($response->failed(), SSOFkUhExcetion::withResponse($response));
 
-        $self->response = $response;
+        throw_if(empty($user), SSOFkUhExcetion::withResponse(response()->json([
+            'message' => "SSO Token tidak di temukan di " . $appname,
+        ], 404)));
+
+        $self->response = $user;
 
         return $self;
     }

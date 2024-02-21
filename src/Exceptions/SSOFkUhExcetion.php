@@ -11,10 +11,6 @@ class SSOFkUhExcetion extends Exception
 
     public static function withResponse($response)
     {
-        $self = new static;
-        $self->response = $response;
-
-        return $self;
     }
 
     public function report(): void
@@ -27,10 +23,6 @@ class SSOFkUhExcetion extends Exception
      */
     public function render(Request $request)
     {
-        $response = $this->response;
-
-        return back()->withErrors([
-            'message' => $response->json('message') ?? $response->json('error')
-        ]);
+        return  redirect('/')->withErrors(['message' => "Token tidak sama / tidak ditemukan di aplikasi ini"]);
     }
 }
