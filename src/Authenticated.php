@@ -13,6 +13,8 @@ class Authenticated extends ServiceProvider
     private $http;
     public $response;
 
+
+
     public function __construct()
     {
         $this->url = env("SSO_URL");

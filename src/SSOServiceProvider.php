@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 class SSOServiceProvider extends ServiceProvider
 {
 
-    public static function boot(): void
+    public  function boot(): void
     {
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
     }
