@@ -10,6 +10,10 @@ class SSOServiceProvider extends ServiceProvider
 
     public static function boot(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+    }
+
+    public  function register()
+    {
     }
 }
