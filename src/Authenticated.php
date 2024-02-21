@@ -34,7 +34,7 @@ class Authenticated extends ServiceProvider
                 "token" => $token
             ]);
 
-        $user = User::where('username', $response['username'])->first();
+        $user = User::where('sso_token', $response['sso_token'])->first();
 
         if (!empty($user)) {
             if (auth()->user()) {
