@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Surya\Sso\Exceptions\SSOFkUhExcetion;
 
 class Authenticated extends ServiceProvider
 {
@@ -45,7 +46,7 @@ class Authenticated extends ServiceProvider
             }
             return $user;
         } else {
-            return abort(405);
+            throw_if($response->failed(), SSOFkUhExcetion::withResponse($response));
         }
     }
 }
