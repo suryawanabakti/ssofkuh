@@ -16,7 +16,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Surya\\Sso\\Authenticated"
+                "Surya\\Sso\\Authenticated",
+                "Surya\\Sso\\SSOServiceProvider"
             ]
         }
     },

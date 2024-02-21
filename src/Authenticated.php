@@ -4,7 +4,6 @@ namespace Surya\Sso;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
