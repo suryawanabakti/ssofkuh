@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('temporary_password')->nullable();
+            $table->string('sso_token')->unique()->nullable();
             $table->string('token')->nullable();
             $table->string('image')->nullable();
             $table->rememberToken();

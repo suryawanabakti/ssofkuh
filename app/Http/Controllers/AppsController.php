@@ -27,6 +27,7 @@ class AppsController extends Controller
             'category_id' => 'required',
             'name' => 'required|max:255',
             'url' => 'required|url',
+            'need_trusted_host' => 'required|boolean',
             'type_icon' => '',
             'icon' => ''
         ]);
@@ -56,6 +57,7 @@ class AppsController extends Controller
             'category_id' => 'required',
             'name' => 'required|max:255',
             'url' => 'required|url',
+            'need_trusted_host' => 'required|boolean',
             'type_icon' => '',
             'icon' => ''
         ]);

@@ -31,6 +31,7 @@
                                     <th>Kategori</th>
                                     <td>Redirect URL</td>
                                     <td>Icon</td>
+                                    <td>Trusted</td>
                                     <td></td>
                                 </tr>
                             </thead>
@@ -51,6 +52,14 @@
                                             @if ($app->type_icon === 'upload_img')
                                                 <img src="/storage/{{ $app->icon }}" alt="{{ $app->name }}"
                                                     class="img img-fluid">
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($app->need_trusted_host)
+                                                <span class="badge bg-success">Iya</span>
+                                            @endif
+                                            @if (!$app->need_trusted_host)
+                                                <span class="badge bg-danger">Tidak</span>
                                             @endif
                                         </td>
                                         <td class="text-end">

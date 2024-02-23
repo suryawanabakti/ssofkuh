@@ -30,9 +30,14 @@ class UsersController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $valData['password'] = bcrypt($request->password);
+        $user = User::create([
+            "username" => $request->username,
+            "name" => $request->name,
+            "password" => $request->password,
+            "temporary_password" => $request->password,
+            "sso_token" => $request->sso_token ?? null,
+        ]);
 
-        $user = User::create($valData);
         $user->assignRole("user");
         return redirect('/users')->with('success', 'Berhasil tambah user');
     }
@@ -47,6 +52,7 @@ class UsersController extends Controller
         $validatedData = $request->validate([
             'name' => "required|max:255",
             'username' => "required|regex:/^\S*$/u|unique:users,username," . $user->id,
+            'sso_token' => "required"
         ]);
 
         if ($request->password) {

@@ -36,6 +36,17 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="" class="form-label">Butuh Trusted Host? <span
+                                    class="text-danger">*</span></label>
+                            <select name="need_trusted_host" id="" class="form-select">
+                                <option value="0">Tidak</option>
+                                <option value="1">Iya</option>
+                            </select>
+                            @error('need_trusted_host')
+                                <small class="text-danger"> {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="" class="form-label">Type Icon</label>
                             <select name="type_icon" id="type_icon" class="form-select">
                                 <option value="">Pilih</option>

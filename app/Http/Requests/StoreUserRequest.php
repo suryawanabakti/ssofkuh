@@ -25,6 +25,7 @@ class StoreUserRequest extends FormRequest
             'username' => ['required', 'unique:users,username'],
             'name' => ['required'],
             'password' => ['required', 'min:5'],
+            'sso_token' => ['required'],
         ];
     }
 }

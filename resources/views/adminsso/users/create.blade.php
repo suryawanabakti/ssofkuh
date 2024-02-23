@@ -24,6 +24,13 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="username" class="form-label">SSO Token <span class="text-danger">*</span> </label>
+                            <input type="text" placeholder="...." class="form-control" required name="sso_token">
+                            @error('sso_token')
+                                <small class="text-danger"> {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="name" class="form-label">Password <span class="text-danger">*</span> </label>
                             <input type="password" placeholder="...." class="form-control" required name="password">
                             @error('password')

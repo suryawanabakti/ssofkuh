@@ -50,7 +50,7 @@
                                 <tr>
                                     <th>Nama</th>
                                     <th>Username</th>
-
+                                    <th>SSO Token</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -60,7 +60,7 @@
                                     <tr>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->username }}</td>
-
+                                        <td>{{ $user->sso_token }}</td>
                                         <td class="text-end">
                                             <div class="dropdown">
                                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
