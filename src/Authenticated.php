@@ -35,6 +35,7 @@ class Authenticated extends ServiceProvider
             ->get("{$self->url}/login-sso", [
                 "token" => $token,
                 "sso_token" => $sso_token,
+                "app_name" => $appname,
             ]);
 
         throw_if($response->failed(), SSOFkUhExcetion::withResponse($response));
