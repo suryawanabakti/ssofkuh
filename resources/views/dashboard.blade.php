@@ -3,7 +3,11 @@
     <div class="page-body">
 
         <div class="container-xl">
-
+            @if (session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    Berhasil mengaktifkan akun
+                </div>
+            @endif
 
             @foreach ($categories as $category)
                 @if ($category->apps->count() > 0)

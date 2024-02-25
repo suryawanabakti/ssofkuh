@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table card-table table-vcenter text-nowrap datatable">
+                        <table class="table card-table table-vcenter  datatable">
                             <thead>
                                 <tr>
                                     <th>Nama</th>
@@ -58,8 +58,8 @@
 
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->username }}</td>
+                                        <td class="text-nowrap">{{ $user->name }}</td>
+                                        <td class="text-nowrap">{{ $user->username }}</td>
                                         <td>{{ $user->sso_token }}</td>
                                         <td class="text-end">
                                             <div class="dropdown">

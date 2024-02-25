@@ -11,7 +11,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
@@ -33,11 +32,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->authenticate();
         $request->session()->regenerate();
-
-        User::find(auth()->id())->update([
-            'token' => (string)str()->uuid()
-        ]);
-
         if ($request->token) {
             $app = App::where('url', $request->app_url)->first();
 
@@ -57,7 +51,7 @@ class AuthenticatedSessionController extends Controller
                 $user = json_decode($user);
 
                 Http::get($request->app_url . '/update-sso-token', [
-                    "token" => $request->token,
+                    "user_id" => $user->id,
                     "sso_token" => auth()->user()->sso_token
                 ]);
 
@@ -65,15 +59,18 @@ class AuthenticatedSessionController extends Controller
                     'user_id' => auth()->id(),
                     'app_id' => $app->id
                 ]);
-                return response()->json([
-                    'message' => 'Berhasil update token'
-                ], 200);
+
+                return redirect()->intended(RouteServiceProvider::HOME)->with('success', 'Berhasil mengaktifkan akun sso');
             } else {
-                return response()->json([
-                    'message' => "Akun ini sudah memiliki token  :" . auth()->user()->token
-                ], 422);
+                $message = "Akun ini sudah terhubung";
+                return redirect('/errors?message=' . $message . "&callBackUrl={$app->url}");
             }
         }
+
+        User::find(auth()->id())->update([
+            'token' => (string)str()->uuid()
+        ]);
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

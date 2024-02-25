@@ -25,7 +25,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">SSO Token <span class="text-danger">*</span> </label>
-                            <input type="text" placeholder="...." class="form-control" required name="sso_token">
+                            <input type="text" placeholder="...." class="form-control" required name="sso_token"
+                                value="{{ str()->uuid() }}">
                             @error('sso_token')
                                 <small class="text-danger"> {{ $message }}</small>
                             @enderror

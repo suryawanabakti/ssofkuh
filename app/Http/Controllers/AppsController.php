@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\App;
 use App\Models\Category;
+use App\Models\NeedTrustedHost;
 use Illuminate\Http\Request;
 
 class AppsController extends Controller
@@ -50,6 +51,7 @@ class AppsController extends Controller
         $categories = Category::orderBy('created_at', 'desc')->get();
         return view('adminsso.apps.edit', compact('app', 'categories'));
     }
+
 
     public function update(Request $request, App $app)
     {

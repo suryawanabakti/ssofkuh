@@ -20,6 +20,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Username <span class="text-danger">*</span> </label>
+                            <input type="text" placeholder="...." class="form-control" required name="sso_token"
+                                value="{{ $user->sso_token }}">
+                            @error('sso_token')
+                                <small class="text-danger"> {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">SSO Token <span class="text-danger">*</span> </label>
                             <input type="text" placeholder="...." class="form-control" required name="username"
                                 value="{{ $user->username }}">
                             @error('username')

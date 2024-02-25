@@ -14,4 +14,9 @@ class App extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function needTrustedHost()
+    {
+        return $this->hasMany(NeedTrustedHost::class);
+    }
 }

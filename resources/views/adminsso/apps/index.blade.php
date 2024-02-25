@@ -69,8 +69,11 @@
                                                     Action
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item"
-                                                            href="/apps/{{ $app->id }}/edit">Edit</a></li>
+
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="/apps/{{ $app->id }}/edit">Edit</a>
+                                                    </li>
                                                     <li>
                                                         <form action="/apps/{{ $app->id }}" method="POST"
                                                             onsubmit="return confirm('Apakah anda yakin ?')">
@@ -78,6 +81,12 @@
                                                             @method('DELETE')
                                                             <button class="dropdown-item" type="submit">Hapus</button>
                                                         </form>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="/apps/{{ $app->id }}/need-trusted-host">Lihat
+                                                            User
+                                                            Tertaut</a>
                                                     </li>
                                                 </ul>
                                             </div>
