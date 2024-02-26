@@ -26,3 +26,11 @@ Route::get('/login-sso', function () {
 });
 ```
 
+## Aplikasi yang butuh trusted host
+GET /active-user/{user_id}
+
+
+
+
+
+
