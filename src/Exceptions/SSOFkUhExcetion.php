@@ -1,35 +1,20 @@
 <?php
 
-namespace Surya\Sso\Exceptions;
+namespace Surya\Sso;
 
-use Illuminate\Http\Request;
-use Exception;
+use Illuminate\Support\ServiceProvider;
 
-class SSOFkUhExcetion extends Exception
+
+class SSOServiceProvider extends ServiceProvider
 {
-    public $response;
 
-    public static function withResponse($response)
+    public  function boot(): void
     {
-        $self = new static;
-        $self->response = $response;
-
-        return $self;
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
-    public function report(): void
+    public  function register()
     {
-        // ...
-    }
-
-    /**
-     * Render the exception into an HTTP response.
-     */
-    public function render(Request $request)
-    {
-        $response = $this->response;
-
-        $message = $response["message"] ?? $response->original["message"];
-        return redirect(env('SSO_URL') . "/errors?message=$message");
     }
 }
