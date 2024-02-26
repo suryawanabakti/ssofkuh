@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Surya\Sso\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Laravel\Sanctum\PersonalAccessToken;
