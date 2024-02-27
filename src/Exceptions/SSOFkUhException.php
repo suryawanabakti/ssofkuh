@@ -5,7 +5,7 @@ namespace Surya\Sso\Exceptions;
 use Illuminate\Http\Request;
 use Exception;
 
-class SSOFkUhExcetion extends Exception
+class SSOFkUhException extends Exception
 {
     public $response;
 
