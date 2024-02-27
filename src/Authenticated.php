@@ -38,7 +38,7 @@ class Authenticated extends ServiceProvider
                 "app_name" => $appname,
             ]);
 
-        throw_if($response->failed(), SSOFkUhExcetion::withResponse($response));
+        throw_if($response->failed(), SSOFkUhException::withResponse($response));
 
         $user = User::where('sso_token', $response['sso_token'])->first();
 
