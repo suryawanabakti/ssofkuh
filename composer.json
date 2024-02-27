@@ -13,14 +13,6 @@
             "Surya\\Sso\\": "src/"
         }
     },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Surya\\Sso\\Authenticated",
-                "Surya\\Sso\\SSOServiceProvider"
-            ]
-        }
-    },
     "authors": [
         {
             "name": "surya",
