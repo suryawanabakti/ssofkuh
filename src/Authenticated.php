@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Surya\Sso\Exceptions\SSOFkUhExcetion;
+use Surya\Sso\Exceptions\SSOFkUhException;
 
 class Authenticated extends ServiceProvider
 {
