@@ -5,7 +5,7 @@ namespace Surya\Sso;
 use Illuminate\Support\ServiceProvider;
 
 
-class SSOServiceProvider extends ServiceProvider
+class SSOFkUhException extends ServiceProvider
 {
 
     public  function boot(): void
