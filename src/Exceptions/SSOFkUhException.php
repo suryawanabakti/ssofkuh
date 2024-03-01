@@ -29,7 +29,13 @@ class SSOFkUhException extends Exception
     {
         $response = $this->response;
 
-        $message = $response["message"] ?? $response->original["message"];
+        if (is_object($response)) {
+            $message = $response->original["message"] ?? $response["message"];
+        } else {
+            $message = $response["message"] ?? $response->original["message"];
+        }
+
+        $message .= " " . env("APP_NAME");
         return redirect(env('SSO_URL') . "/errors?message=$message");
     }
 }
