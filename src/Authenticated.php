@@ -51,7 +51,7 @@ class Authenticated extends ServiceProvider
             return $user;
         }
 
-        throw_if(empty($user), SSOFkUhExcetion::withResponse(response()->json([
+        throw_if(empty($user), SSOFkUhException::withResponse(response()->json([
             'message' => "SSO Token tidak di temukan di " . $appname,
         ], 404)));
 
