@@ -22,7 +22,7 @@ Route::get('/login-sso', function () {
 
 ## Aplikasi yang butuh trusted host
 ```php
-GET /active-user/{user_id}
+GET /active-user
 ```
 
 
