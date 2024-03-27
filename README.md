@@ -1,6 +1,9 @@
 ## Install Package
 composer require suryawanabakti/sso
 
+## Add Sso token 
+php artisan migrate
+
 ## Buat ENV
 ```env
 SSO_USERNAME=
