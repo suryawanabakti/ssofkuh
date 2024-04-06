@@ -9,6 +9,7 @@ use App\Models\App;
 use App\Models\Category;
 use App\Models\NeedTrustedHost;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -32,8 +33,8 @@ Route::get('/trusted-host', function (Request $request) {
 
     $app = App::where('url', $request->app_url)->first();
     if (empty($app)) {
-        $message = "URL Tidak ada di database app";
-        return redirect('/errors?message=' . $message . "&callBackUrl={$app->url}");
+        $message = "URL Web Tidak ada di database SSO";
+        return redirect('/errors?message=' . $message . "&callBackUrl={$request->url}");
     }
 
     if (auth()->user()) {
@@ -45,19 +46,20 @@ Route::get('/trusted-host', function (Request $request) {
 
             $user = json_decode($user);
 
-            Http::get($request->app_url . '/update-sso-token', [
+            $updated = Http::get($request->app_url . '/update-sso-token', [
                 "user_id" => $user->id,
                 "sso_token" => auth()->user()->sso_token
             ]);
 
-            NeedTrustedHost::create([
-                'user_id' => auth()->id(),
-                'app_id' => $app->id
-            ]);
+            if ($updated["update"] === 1) {
+                NeedTrustedHost::create([
+                    'user_id' => auth()->id(),
+                    'app_id' => $app->id
+                ]);
+                return redirect()->intended(RouteServiceProvider::HOME)->with('success', 'Berhasil mengaktifkan akun sso');
+            }
 
-            return response()->json([
-                'message' => 'Berhasil menautkan aplikasi sso'
-            ], 200);
+            return "Gagal Update AKUN SSO";
         } else {
             $message = "Akun ini sudah memiliki token  :" . auth()->user()->token;
             return redirect('/errors?message=' . $message . "&callBackUrl={$app->url}");
@@ -77,6 +79,7 @@ Route::get('get-token-sso', function (Request $request) {
 Route::get('/login-sso', function () {
 
     $user =  User::where('sso_token', request('sso_token') ?? null)->where('token', request('token') ?? null)->first();
+
     if (empty(request('sso_token'))) {
         return response()->json(["message" => "SSO Token Harus Ada"], 422);
     }
@@ -87,15 +90,17 @@ Route::get('/login-sso', function () {
         ], 404);
     }
 
-    $app  = App::where('name', request('app_name'))->first();
-    if ($app->need_trusted_host) {
+    $app  = App::where('name', request('app_name') ?? null)->first();
+
+    if (!empty($app->need_trusted_host)) {
         $needTrustedHost = NeedTrustedHost::where('app_id', $app->id)->where('user_id', $user->id)->first();
         if (empty($needTrustedHost)) {
             return response()->json([
-                'message' => "Aplikasi ini Butuh trusted host ",
+                'message' => "Aplikasi ini Butuh trusted host",
             ], 404);
         }
     }
+
     return $user;
 })->middleware('ssoauth');
 

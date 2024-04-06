@@ -50,17 +50,20 @@ class AuthenticatedSessionController extends Controller
 
                 $user = json_decode($user);
 
-                Http::get($request->app_url . '/update-sso-token', [
+                $updated = Http::get($request->app_url . '/update-sso-token', [
                     "user_id" => $user->id,
                     "sso_token" => auth()->user()->sso_token
                 ]);
 
-                NeedTrustedHost::create([
-                    'user_id' => auth()->id(),
-                    'app_id' => $app->id
-                ]);
+                if ($updated["update"] === 1) {
+                    NeedTrustedHost::create([
+                        'user_id' => auth()->id(),
+                        'app_id' => $app->id
+                    ]);
+                    return redirect()->intended(RouteServiceProvider::HOME)->with('success', 'Berhasil mengaktifkan akun sso');
+                }
 
-                return redirect()->intended(RouteServiceProvider::HOME)->with('success', 'Berhasil mengaktifkan akun sso');
+                return "Gagal Update AKUN SSO";
             } else {
                 $message = "Akun ini sudah terhubung";
                 return redirect('/errors?message=' . $message . "&callBackUrl={$app->url}");

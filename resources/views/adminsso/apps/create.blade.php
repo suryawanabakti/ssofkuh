@@ -47,6 +47,13 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="" class="form-label">Add URL</label>
+                            <input type="text" placeholder="...." class="form-control" name="add_url" value="login-sso">
+                            @error('add_url')
+                                <small class="text-danger"> {{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="" class="form-label">Type Icon</label>
                             <select name="type_icon" id="type_icon" class="form-select">
                                 <option value="">Pilih</option>

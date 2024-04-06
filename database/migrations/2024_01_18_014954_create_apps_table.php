@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('apps', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id')->unique();
+            $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name');
             $table->text('url');
             $table->boolean('need_trusted_host')->default(false);
+            $table->string('add_url')->nullable();
             $table->enum('type_icon', ['svg', 'url_img', 'upload_img'])->nullable();
             $table->text('icon')->nullable();
             $table->timestamps();

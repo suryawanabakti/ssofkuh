@@ -19,7 +19,7 @@
                             <div class="row row-cards">
                                 @foreach ($category->apps as $app)
                                     <div class="col-sm-6 col-lg-3">
-                                        <a href="{{ $app->url }}/login-sso?token={{ $token }}&sso_token={{ auth()->user()->sso_token }}&app_name={{ $app->name }}"
+                                        <a href="{{ $app->url }}/{{ $app->add_url }}?token={{ $token }}&sso_token={{ auth()->user()->sso_token }}&app_name={{ $app->name }}"
                                             class="text-decoration-none" target="_blank">
                                             <div class="card card-sm card-app">
                                                 <div class="card-body">

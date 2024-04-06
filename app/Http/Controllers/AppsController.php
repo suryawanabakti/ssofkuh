@@ -30,7 +30,8 @@ class AppsController extends Controller
             'url' => 'required|url',
             'need_trusted_host' => 'required|boolean',
             'type_icon' => '',
-            'icon' => ''
+            'icon' => '',
+            'add_url' => '',
         ]);
 
         if ($request->type_icon === 'upload_img') {
@@ -61,7 +62,8 @@ class AppsController extends Controller
             'url' => 'required|url',
             'need_trusted_host' => 'required|boolean',
             'type_icon' => '',
-            'icon' => ''
+            'icon' => '',
+            'add_url' => '',
         ]);
 
         if ($request->type_icon === 'upload_img') {
