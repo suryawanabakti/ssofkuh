@@ -16,7 +16,7 @@ SSO_URL=
 use Surya\Sso\Authenticated;
 
 Route::get('/login-sso', function () {
-    $user =  Authenticated::authenticate(request('token'), request('sso_token'), request('app_url'));
+    $user =  Authenticated::authenticate(request('token'), request('sso_token'), request('app_name'));
     Auth::login($user);
     // Kondisi Jika Ada cth:  if role === admin redirect :
     return redirect('/dashboard');
