@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminSSO\UsersController;
 use App\Http\Controllers\AppsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ConnectedController;
+use App\Http\Controllers\LoginSSOController;
 use App\Http\Controllers\NeedTrustedHostController;
 use App\Http\Controllers\ProfileController;
 use App\Models\App;
@@ -76,33 +78,11 @@ Route::get('get-token-sso', function (Request $request) {
     return view('auth.get-token-sso', compact('token', 'app_url'));
 })->middleware(['guest']);
 
-Route::get('/login-sso', function () {
+Route::get('/delete-all-connecting', function () {
+    NeedTrustedHost::where('user_id', auth()->id())->delete();
+})->middleware(['auth']);
 
-    $user =  User::where('sso_token', request('sso_token') ?? null)->where('token', request('token') ?? null)->first();
-
-    if (empty(request('sso_token'))) {
-        return response()->json(["message" => "SSO Token Harus Ada"], 422);
-    }
-
-    if (empty($user)) {
-        return response()->json([
-            'message' => "Token tidak ditemukan / Tidak Sama ",
-        ], 404);
-    }
-
-    $app  = App::where('name', request('app_name') ?? null)->first();
-
-    if (!empty($app->need_trusted_host)) {
-        $needTrustedHost = NeedTrustedHost::where('app_id', $app->id)->where('user_id', $user->id)->first();
-        if (empty($needTrustedHost)) {
-            return response()->json([
-                'message' => "Aplikasi ini Butuh trusted host",
-            ], 404);
-        }
-    }
-
-    return $user;
-})->middleware('ssoauth');
+Route::get('/login-sso', LoginSSOController::class)->middleware('ssoauth');
 
 Route::get('/errors', function () {
     return view('errors.index');
@@ -140,6 +120,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/users/import', [UsersController::class, 'import']);
         Route::get('/users/export', [UsersController::class, 'export']);
     });
+
+    Route::get('/connected', [ConnectedController::class, 'index']);
+    Route::get('/connected/{id}/delete', [ConnectedController::class, 'destroy']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

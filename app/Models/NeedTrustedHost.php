@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class NeedTrustedHost extends Model
 {
@@ -11,8 +12,13 @@ class NeedTrustedHost extends Model
 
     protected $fillable = ['user_id', 'app_id'];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function app(): BelongsTo
+    {
+        return $this->belongsTo(App::class);
     }
 }

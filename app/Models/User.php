@@ -18,6 +18,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
+    public static function booted()
+    {
+        static::creating(function ($model) {
+            $model->id = str()->uuid();
+        });
+    }
+
     protected $fillable = [
         'name',
         'username',
