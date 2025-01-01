@@ -9,6 +9,10 @@ class App extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public function visibleApplication()
+    {
+        return $this->hasMany(VisibleApplicationUser::class);
+    }
 
     public function category()
     {

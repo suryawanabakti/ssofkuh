@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('need_trusted_hosts', function (Blueprint $table) {
+        Schema::create('visible_application_users', function (Blueprint $table) {
             $table->id();
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('need_trusted_hosts');
+        Schema::dropIfExists('visible_application_users');
     }
 };

@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $token = (string) str()->uuid();
-    $categories = Category::with('apps')->orderBy('created_at', 'desc')->get();
+    $categories = Category::with('apps.visibleApplication')->orderBy('created_at', 'desc')->get();
     User::find(auth()->id())->update([
         'token' => $token,
     ]);
